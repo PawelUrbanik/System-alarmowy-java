@@ -39,6 +39,14 @@ public class MeasurementController {
         return "hour";
     }
 
+    @GetMapping("/threeHour")
+    public String getThreeHour(Model model){
+        List<Measurement> hourMeasurement = measurementRepository.findAllByDateTimeBetween(LocalDateTime.now().minusHours(3L),LocalDateTime.now());
+//        hourMeasurement.forEach(System.out::println);
+        model.addAttribute("measurements", hourMeasurement);
+        return "threeH";
+    }
+
     @GetMapping("/day")
     public String getOneDay(Model model)
     {
