@@ -18,7 +18,7 @@ public class SystemAlarmowyApplication {
         Measurement measurement1 = new Measurement(11,223,31);
         Measurement measurement2 = new Measurement(331,452,13);
         Measurement measurement3 = new Measurement(121,32,123);
-        Measurement measurement4 = new Measurement(112,232,3112);
+        Measurement measurement4 = new Measurement(50,45,31);
         measurementRepository.save(measurement);
         measurementRepository.save(measurement1);
         measurementRepository.save(measurement2);
