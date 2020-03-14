@@ -8,8 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.pawel.system_alarmowy.model.Measurement;
 import pl.pawel.system_alarmowy.repository.MeasurementRepository;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/")
@@ -34,8 +40,13 @@ public class MeasurementController {
     @GetMapping("/hour")
     public String getOneHour(Model model){
         List<Measurement> hourMeasurement = measurementRepository.findAllByDateTimeBetween(LocalDateTime.now().minusHours(1L),LocalDateTime.now());
-//        hourMeasurement.forEach(System.out::println);
-        model.addAttribute("measurements", hourMeasurement);
+        List<LocalTime> times = new ArrayList<>();
+        hourMeasurement.forEach(measurement -> times.add(measurement.getDateTime().toLocalTime()));
+
+        System.out.println("*******");
+        System.out.println(times.get(1).toString());
+        times.forEach(dateTime -> System.out.println(dateTime));
+        model.addAttribute("times", times);
         return "hour";
     }
 
@@ -51,6 +62,8 @@ public class MeasurementController {
     public String getOneDay(Model model)
     {
         List<Measurement> dayMeasurement = measurementRepository.findAllByDateTimeBetween(LocalDateTime.now().minusDays(1L), LocalDateTime.now());
+        String pattern = "yyyy-mm-dd HH:mm:ss";
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern, new Locale("pl", "PL"));
         model.addAttribute("measurements", dayMeasurement);
         return "day";
     }

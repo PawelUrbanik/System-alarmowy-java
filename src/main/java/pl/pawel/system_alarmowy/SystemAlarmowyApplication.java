@@ -11,13 +11,18 @@ import java.time.LocalDateTime;
 @SpringBootApplication
 public class SystemAlarmowyApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ConfigurableApplicationContext ctx = SpringApplication.run(SystemAlarmowyApplication.class, args);
         MeasurementRepository measurementRepository = ctx.getBean(MeasurementRepository.class);
         Measurement measurement = new Measurement(1,2,3);
-        Measurement measurement1 = new Measurement(11,223,31);
-        Measurement measurement2 = new Measurement(331,452,13);
-        Measurement measurement3 = new Measurement(121,32,123);
+        Thread.sleep(1000);
+        Measurement measurement1 = new Measurement(11,23,31);
+        Thread.sleep(1000);
+
+        Measurement measurement2 = new Measurement(31,52,13);
+        Thread.sleep(1000);
+        Measurement measurement3 = new Measurement(21,32,23);
+        Thread.sleep(1000);
         Measurement measurement4 = new Measurement(50,45,31);
         measurementRepository.save(measurement);
         measurementRepository.save(measurement1);

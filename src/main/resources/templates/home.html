@@ -18,6 +18,10 @@
 <div th:replace="fragments/gauges :: gauges"></div>
 <h1>Dane z czujników</h1>
 <div>
+    <script>
+    var  measurement = [[${measurement}]];
+    console.log(measurement);
+    </script>
     <h1 th:text="${measurement.value1}"></h1>
     <h1 th:text="${measurement.value2}"></h1>
     <h1 th:text="${measurement.value3}"></h1>

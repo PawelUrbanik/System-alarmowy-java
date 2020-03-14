@@ -20,16 +20,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${measurements.empty}">
+    <tr th:if="${times.empty}">
         <td colspan="2"> No Measurements Available </td>
     </tr>
-    <tr th:each="measurement : ${measurements}">
-        <td><span th:text="${measurement.dateTime}"> DateTime </span></td>
-        <td><span th:text="${measurement.value1}"> Value 1 </span></td>
-        <td><span th:text="${measurement.value2}"> Value 1 </span></td>
-        <td><span th:text="${measurement.value3}"> Value 1 </span></td>
+    <tr th:each="time : ${times}">
+        <td><span th:text="${time}"> DateTime </span></td>
     </tr>
     </tbody>
 </table>
+<script>
+    var times = [[${times}]];
+    console.log(times);
+</script>
 </body>
 </html>
