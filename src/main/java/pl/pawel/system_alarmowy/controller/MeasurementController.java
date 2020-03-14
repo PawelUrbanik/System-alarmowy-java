@@ -40,20 +40,13 @@ public class MeasurementController {
     @GetMapping("/hour")
     public String getOneHour(Model model){
         List<Measurement> hourMeasurement = measurementRepository.findAllByDateTimeBetween(LocalDateTime.now().minusHours(1L),LocalDateTime.now());
-        List<LocalTime> times = new ArrayList<>();
-        hourMeasurement.forEach(measurement -> times.add(measurement.getDateTime().toLocalTime()));
-
-        System.out.println("*******");
-        System.out.println(times.get(1).toString());
-        times.forEach(dateTime -> System.out.println(dateTime));
-        model.addAttribute("times", times);
+        model.addAttribute("measurements", hourMeasurement);
         return "hour";
     }
 
     @GetMapping("/threeHour")
     public String getThreeHour(Model model){
         List<Measurement> hourMeasurement = measurementRepository.findAllByDateTimeBetween(LocalDateTime.now().minusHours(3L),LocalDateTime.now());
-//        hourMeasurement.forEach(System.out::println);
         model.addAttribute("measurements", hourMeasurement);
         return "threeH";
     }
